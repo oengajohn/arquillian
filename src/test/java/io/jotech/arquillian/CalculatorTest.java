@@ -18,10 +18,9 @@ import io.jotech.arquillian.util.ArquillianWarUtils;
 class CalculatorTest {
     @Deployment
     public static Archive<?> createTestArchive() {
-        var archive= ArquillianWarUtils.getBasicWebArchive()
-                .addClasses(Calculator.class,CalculatorImpl.class);
-        System.out.println(archive.toString(true));
-        return archive;
+        return ShrinkWrap.create(WebArchive.class,"test.war")
+                .addPackage(Calculator.class.getPackage())
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     @Inject
