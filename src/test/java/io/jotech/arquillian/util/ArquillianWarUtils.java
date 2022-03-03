@@ -22,6 +22,7 @@ public class ArquillianWarUtils {
     public static WebArchive getBasicWebArchive() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
                 .addAsLibraries(ASSERTJ_ARTIFACT)
+                .addAsResource("test-persistence.xml","META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 
     }
